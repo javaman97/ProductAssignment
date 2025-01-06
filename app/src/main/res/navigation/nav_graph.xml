@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listingProductFragment">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.aman.swipeassignment.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/listingProductFragment"
+        android:name="com.aman.swipeassignment.ui.screens.ListingProductFragment"
+        android:label="fragment_listing_product"
+        tools:layout="@layout/fragment_listing_product" >
+        <action
+            android:id="@+id/action_listingProductFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+</navigation>
