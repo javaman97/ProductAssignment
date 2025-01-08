@@ -16,11 +16,13 @@ class ListingProductAdapter :RecyclerView.Adapter<ListingProductAdapter.ListingP
         fun bind(product: Product){
             binding.txtProductName.text = product.product_name
             binding.txtProductType.text = product.product_type
-            binding.txtPrice.text = "Price: \$${product.price}"
-            binding.txtTax.text = "Tax: ${product.tax}%"
+            binding.txtPrice.text = "₹ ${product.price.toInt()}"
+            binding.txtTax.text = "Tax: ${"%.1f".format(product.tax.toFloat())}%"
 
             binding.imgProduct.load(product.image){
-                placeholder(R.drawable.product_not_found)
+                crossfade(true)
+                placeholder(R.drawable.preloader)
+                error(R.drawable.product_not_found)
             }
         }
     }

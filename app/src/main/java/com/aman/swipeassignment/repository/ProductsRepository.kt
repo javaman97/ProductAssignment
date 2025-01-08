@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aman.swipeassignment.api.ProductApi
 import com.aman.swipeassignment.models.Product
-import com.aman.swipeassignment.utils.NetworkUtils
 
 class ProductsRepository(private val productApi:ProductApi, private val applicationContext:Context) {
     private val productsList = MutableLiveData<List<Product>>()
