@@ -1,6 +1,7 @@
 package com.aman.swipeassignment.repository
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aman.swipeassignment.api.ProductApi
@@ -16,6 +17,7 @@ class ProductsRepository(private val productApi:ProductApi, private val applicat
     {
         return try {
              val result = productApi.getAllProducts()
+
                 if (result.isSuccessful){
                     result.body() ?: emptyList()
                 }
@@ -23,6 +25,7 @@ class ProductsRepository(private val productApi:ProductApi, private val applicat
                 emptyList()
             }
             } catch (e:Exception){
+                Log.e("Get Products Error", " ${e.message}")
                 emptyList()
         }
     }

@@ -17,7 +17,7 @@ class ListingProductAdapter :RecyclerView.Adapter<ListingProductAdapter.ListingP
             binding.txtProductName.text = product.product_name
             binding.txtProductType.text = product.product_type
             binding.txtPrice.text = "₹ ${product.price.toInt()}"
-            binding.txtTax.text = "Tax: ${"%.1f".format(product.tax.toFloat())}%"
+            binding.txtTax.text = "Tax at ${"%.1f".format(product.tax.toFloat())}%"
 
             binding.imgProduct.load(product.image){
                 crossfade(true)
