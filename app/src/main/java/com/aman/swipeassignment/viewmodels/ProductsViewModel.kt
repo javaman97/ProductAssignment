@@ -14,6 +14,13 @@ class ProductsViewModel(private val repository: ProductsRepository):ViewModel() 
     private val _productListState = MutableLiveData<ResponseState<List<Product>>>()
     val productListState: LiveData<ResponseState<List<Product>>> get() = _productListState
 
+    private val _isInternetConnected = MutableLiveData<Boolean>()
+    val isInternetConnected: LiveData<Boolean> get() = _isInternetConnected
+
+    fun updateConnectivityStatus(isConnected: Boolean) {
+        _isInternetConnected.postValue(isConnected)
+    }
+
     init {
         fetchProducts()
     }

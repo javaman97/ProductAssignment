@@ -1,11 +1,110 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:paddingTop="@dimen/list_item_spacing_half"
-    android:paddingBottom="@dimen/list_item_spacing_half"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.screens.AddProductFragment"
-    tools:listitem="@layout/fragment_add_product_list_dialog_item" />
+    android:orientation="vertical"
+    android:padding="14dp">
+
+    <ImageView
+        android:id="@+id/btnUploadImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_add_image"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="@string/enter_product_name"
+        app:boxStrokeColor="@color/orange"
+        app:boxBackgroundColor="@color/white"
+        android:inputType="text">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etxtProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_condensed_bold"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+<com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    app:boxStrokeColor="@color/orange"
+    app:boxBackgroundColor="@color/white"
+    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+    <AutoCompleteTextView
+        android:inputType="none"
+        android:id="@+id/spinnerProductType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_condensed_bold"
+        android:hint="@string/select_product_type"
+        app:simpleItems="@array/product_list" />
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:weightSum="2">
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        app:boxStrokeColor="@color/orange"
+        app:boxBackgroundColor="@color/white"
+        android:hint="@string/enter_selling_price"
+        android:inputType="numberDecimal">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etxtSellingPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_condensed_bold"/>
+</com.google.android.material.textfield.TextInputLayout>
+    <Space
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8"
+        app:boxStrokeColor="@color/orange"
+        app:boxBackgroundColor="@color/white"
+        android:hint="@string/enter_tax_rate"
+        android:inputType="numberDecimal">
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etxtTaxRate"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_condensed_bold"/>
+</com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+
+<ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textSize="20sp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/orange"
+        android:text="@string/submit"/>
+</LinearLayout>

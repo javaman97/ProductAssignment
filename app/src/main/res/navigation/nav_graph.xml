@@ -19,4 +19,13 @@
             android:id="@+id/action_listingProductFragment_to_mainActivity"
             app:destination="@id/mainActivity" />
     </fragment>
+    <dialog
+        android:id="@+id/addProductFragment"
+        android:name="com.aman.swipeassignment.ui.screens.AddProductFragment"
+        android:label="fragment_add_product_list_dialog"
+        tools:layout="@layout/fragment_add_product_list_dialog" >
+        <action
+            android:id="@+id/action_addProductFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </dialog>
 </navigation>

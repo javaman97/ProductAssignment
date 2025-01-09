@@ -3,29 +3,14 @@ package com.aman.swipeassignment.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.util.Log
 
-class NetworkUtils {
-    companion object{
-
-        fun isOnline(context: Context): Boolean {
-            val connectivityManager =
-                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val capabilities =
-                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
-                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
-                    return true
-                }
-            }
-            return false
-        }
+object NetworkUtils {
+    fun isConnected(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetwork ?: return false
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
 }

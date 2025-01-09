@@ -15,31 +15,36 @@
         android:layout_height="match_parent"
         android:padding="8dp">
 
-        <ImageView
-            android:id="@+id/imgProduct"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView2"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:contentDescription="@string/product_img_desc"
-            android:scaleType="centerCrop"
-            android:src="@drawable/product_not_found"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgProduct"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/upload_image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/product_not_found" />
+        </com.google.android.material.card.MaterialCardView>
 
 
         <TextView
             android:id="@+id/txtProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:fontFamily="@font/roboto_mono_semibold"
-            android:textSize="16sp"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.019"
-            app:layout_constraintStart_toEndOf="@id/imgProduct"
+            app:layout_constraintHorizontal_bias="0.096"
+            app:layout_constraintStart_toEndOf="@+id/materialCardView2"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Product Name" />
 
@@ -48,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/blue"
-            android:fontFamily="@font/roboto_mono"
+            android:fontFamily="@font/roboto_condensed_bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/txtProductName"
             app:layout_constraintTop_toBottomOf="@+id/txtProductName"
@@ -60,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:fontFamily="@font/roboto_mono_semibold"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:textColor="@color/green"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,8 +78,8 @@
             android:id="@+id/txtTax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_mono"
-            android:textColor="@color/yellow"
+            android:fontFamily="@font/roboto_mono_semibold"
+            android:textColor="@color/orange"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/txtPrice"
             app:layout_constraintHorizontal_bias="0.47"

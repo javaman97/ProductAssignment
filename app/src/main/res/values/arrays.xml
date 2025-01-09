@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="product_list">
+        <item>Utilities</item>
+        <item>Service</item>
+        <item>Clothing</item>
+        <item>Health</item>
+        <item>Electronics</item>
+        <item>Toys</item>
+        <item>Product</item>
+        <item>Digital</item>
+        <item>Jewelry</item>
+        <item>Books</item>
+        <item>Others</item>
+    </array>
+</resources>
