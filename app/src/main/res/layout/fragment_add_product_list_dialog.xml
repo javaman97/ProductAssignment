@@ -21,6 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:hint="@string/enter_product_name"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/orange"
         app:boxStrokeColor="@color/orange"
         app:boxBackgroundColor="@color/white"
         android:inputType="text">
@@ -38,6 +40,8 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
     app:boxStrokeColor="@color/orange"
+    app:hintAnimationEnabled="true"
+    app:hintTextColor="@color/orange"
     app:boxBackgroundColor="@color/white"
     style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
     <AutoCompleteTextView
@@ -63,6 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1.2"
         app:boxStrokeColor="@color/orange"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/orange"
         app:boxBackgroundColor="@color/white"
         android:hint="@string/enter_selling_price"
         android:inputType="numberDecimal">
@@ -80,6 +86,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.8"
         app:boxStrokeColor="@color/orange"
+        app:hintAnimationEnabled="true"
+        app:hintTextColor="@color/orange"
         app:boxBackgroundColor="@color/white"
         android:hint="@string/enter_tax_rate"
         android:inputType="numberDecimal">

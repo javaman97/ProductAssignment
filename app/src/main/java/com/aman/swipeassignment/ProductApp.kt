@@ -3,6 +3,7 @@ package com.aman.swipeassignment
 import android.app.Application
 import com.aman.swipeassignment.api.ProductApi
 import com.aman.swipeassignment.api.RetrofitBuilder
+import com.aman.swipeassignment.local.ProductDatabase
 import com.aman.swipeassignment.repository.ProductsRepository
 
 class ProductApp:Application() {
@@ -14,7 +15,7 @@ class ProductApp:Application() {
     }
 
     private fun initialize() {
-        productRepo = ProductsRepository(RetrofitBuilder.getProductApi(), applicationContext )
+        productRepo = ProductsRepository(RetrofitBuilder.getProductApi(), ProductDatabase.getProductDatabase(applicationContext),applicationContext )
     }
 
 }

@@ -17,9 +17,11 @@ import androidx.navigation.fragment.NavHostFragment
 import com.aman.swipeassignment.api.ProductApi
 import com.aman.swipeassignment.api.RetrofitBuilder
 import com.aman.swipeassignment.databinding.ActivityMainBinding
+import com.aman.swipeassignment.local.ProductDatabase
 import com.aman.swipeassignment.repository.ProductsRepository
 import com.aman.swipeassignment.ui.screens.AddProductFragment
 import com.aman.swipeassignment.utils.NetworkUtils
+import com.aman.swipeassignment.utils.setVisibility
 import com.aman.swipeassignment.utils.toast
 import com.aman.swipeassignment.viewmodels.ProductsViewModel
 import com.aman.swipeassignment.viewmodels.ProductsViewModelFactory
@@ -34,8 +36,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  addProductFragment:AddProductFragment
     private lateinit var productRepo: ProductsRepository
     private lateinit var productApi:ProductApi
+    private lateinit var productDB:ProductDatabase
     private var wasPreviouslyConnected: Boolean? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +51,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         productApi = RetrofitBuilder.getProductApi()
-        productRepo = ProductsRepository(productApi,applicationContext)
+        productDB = ProductDatabase.getProductDatabase(this)
+        productRepo = ProductsRepository(productApi,productDB,applicationContext)
 
         productsViewModel= ViewModelProvider(this, ProductsViewModelFactory(productRepo))[ProductsViewModel::class.java]
 
@@ -69,29 +72,20 @@ class MainActivity : AppCompatActivity() {
                 addProductFragment.show(supportFragmentManager, "AddProductDialogFragment")
             }
         } else {
-            Log.e("MainActivity", "NavHostFragment not found!")
+            Log.e(TAG, "NavHostFragment not found!")
         }
 
         productsViewModel.isInternetConnected.observe(this) { isInternetConnected ->
             if (isInternetConnected) {
                 if(wasPreviouslyConnected==false){
-                binding.internetStatus.visibility = View.VISIBLE
-                binding.internetStatus.setBackgroundColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.blue
-                    )
-                )
-                binding.txtConnectionMsg.text = getString(R.string.internet_connection_back)
+                setInternetStatusUI(R.color.blue, R.string.internet_connection_back)
                 lifecycleScope.launch {
                     delay(3000)
-                    binding.internetStatus.visibility = View.INVISIBLE
+                    binding.internetStatus.setVisibility(false)
                 }
             }
             } else {
-                binding.internetStatus.visibility = View.VISIBLE
-                binding.internetStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
-                binding.txtConnectionMsg.text = getString(R.string.no_internet_connection)
+                setInternetStatusUI(R.color.red, R.string.no_internet_connection)
             }
             wasPreviouslyConnected = isInternetConnected
         }
@@ -104,8 +98,19 @@ class MainActivity : AppCompatActivity() {
             while (true) {
                 val isConnected = NetworkUtils.isConnected(this@MainActivity)
                 productsViewModel.updateConnectivityStatus(isConnected)
+                productsViewModel.syncAddedProducts()
                 delay(5000)
             }
         }
     }
+
+    private fun setInternetStatusUI(color: Int, statusText:Int){
+        binding.internetStatus.setBackgroundColor(ContextCompat.getColor(this, color))
+        binding.txtConnectionMsg.text = getString(statusText)
+    }
+
+    companion object{
+        const val TAG = "MainActivity"
+    }
+
 }

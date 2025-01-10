@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.aman.swipeassignment.models.ProductEntity
 
-@Database(entities = [ProductEntity::class], version = 1)
+@Database(entities = [ProductEntity::class], version = 1, exportSchema = false)
 abstract class ProductDatabase:RoomDatabase() {
     abstract fun productDao():ProductDao
 
@@ -21,7 +21,7 @@ abstract class ProductDatabase:RoomDatabase() {
                     context.applicationContext,
                     ProductDatabase::class.java,
                     "product_db"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
 
                 INSTANCE = instance
                 instance

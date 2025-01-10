@@ -7,6 +7,7 @@ import coil.load
 import com.aman.swipeassignment.models.Product
 import com.aman.swipeassignment.R
 import com.aman.swipeassignment.databinding.ListingItemBinding
+import com.aman.swipeassignment.models.ProductEntity
 
 class ListingProductAdapter :RecyclerView.Adapter<ListingProductAdapter.ListingProductViewHolder>() {
    private val productList: MutableList<Product> = mutableListOf()
@@ -16,8 +17,8 @@ class ListingProductAdapter :RecyclerView.Adapter<ListingProductAdapter.ListingP
         fun bind(product: Product){
             binding.txtProductName.text = product.product_name
             binding.txtProductType.text = product.product_type
-            binding.txtPrice.text = "₹ ${product.price.toInt()}"
-            binding.txtTax.text = "Tax at ${"%.1f".format(product.tax.toFloat())}%"
+            binding.txtPrice.text = "$ ${"%.1f".format(product.price)}"
+            binding.txtTax.text = "Tax at ${"%.1f".format(product.tax)}%"
 
             binding.imgProduct.load(product.image){
                 crossfade(true)

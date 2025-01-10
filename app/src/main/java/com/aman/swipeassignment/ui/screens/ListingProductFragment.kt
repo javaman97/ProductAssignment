@@ -1,6 +1,7 @@
 package com.aman.swipeassignment.ui.screens
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.aman.swipeassignment.ui.adapter.ListingProductAdapter
 import com.aman.swipeassignment.databinding.FragmentListingProductBinding
 import com.aman.swipeassignment.local.ProductDatabase
 import com.aman.swipeassignment.repository.ProductsRepository
+import com.aman.swipeassignment.ui.screens.AddProductFragment.Companion
 import com.aman.swipeassignment.utils.ResponseState
 import com.aman.swipeassignment.utils.toast
 import com.aman.swipeassignment.viewmodels.ProductsViewModel
@@ -34,7 +36,8 @@ class ListingProductFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var productAdapter: ListingProductAdapter
     private lateinit var viewModel: ProductsViewModel
-    private val repository: ProductsRepository by lazy { ProductsRepository(RetrofitBuilder.getProductApi(), requireContext()) }
+    private val repository: ProductsRepository by lazy { ProductsRepository(RetrofitBuilder.getProductApi(),
+        ProductDatabase.getProductDatabase(requireContext()), requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +45,7 @@ class ListingProductFragment : Fragment() {
     ): View? {
 
         _binding = FragmentListingProductBinding.inflate(inflater, container, false)
-         viewModel = ViewModelProvider(this, ProductsViewModelFactory(repository)).get(ProductsViewModel::class.java)
+         viewModel = ViewModelProvider(this, ProductsViewModelFactory(repository))[ProductsViewModel::class.java]
         return binding.root
     }
 
@@ -56,11 +59,13 @@ class ListingProductFragment : Fragment() {
     private fun onSearchProducts() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
+                Log.d(TAG, "Searched Query $query")
               return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                filterProductList(newText)
+                Log.d(TAG, "Query Changed $newText")
+                filterProductList(newText.orEmpty())
                 return true
             }
 
@@ -121,6 +126,10 @@ class ListingProductFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val TAG = "Listing Products Screen"
     }
 
 }

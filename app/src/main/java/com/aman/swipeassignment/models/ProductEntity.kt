@@ -6,10 +6,11 @@ import com.squareup.moshi.Json
 
 @Entity(tableName = "products")
 data class ProductEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val product_id: Int = 0,
     @Json(name = "product_name")val name: String,
     @Json(name = "product_type")val type: String,
     val price: String,
     val tax: String,
-    val images: String? = null
+    val image: String? = null,
+    var isSynced:Boolean = false
 )
