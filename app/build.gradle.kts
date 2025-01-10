@@ -65,6 +65,9 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.6.1")
     kapt ("androidx.room:room-compiler:2.6.1")
 
+    //Circular ImageView
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
     // Coroutines
     implementation (libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)

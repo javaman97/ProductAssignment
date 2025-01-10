@@ -42,18 +42,6 @@ class ProductsViewModel(private val repository: ProductsRepository):ViewModel() 
             }
     }
 
-    fun addProduct(productName: String, productType: String, price: Double, tax: Double) {
-        viewModelScope.launch(Dispatchers.IO) {
-            _addProductState.postValue(ResponseState.Loading)
-            val isSuccess = repository.postProduct(productName, productType, price, tax)
-            if (isSuccess) {
-                _addProductState.postValue(ResponseState.Success(true))
-            } else {
-                _addProductState.postValue(ResponseState.Failure("Failed to add product"))
-            }
-        }
-    }
-
     fun syncAddedProducts() {
         viewModelScope.launch {
             repository.syncOfflineProducts()

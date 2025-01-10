@@ -7,12 +7,15 @@
     android:orientation="vertical"
     android:padding="14dp">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/btnUploadImage"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/upload_image"
         android:layout_gravity="center"
+        app:civ_border_width="3dp"
         android:scaleType="centerCrop"
+        app:civ_border_color="@color/orange"
         android:src="@drawable/ic_add_image"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -70,12 +73,12 @@
         app:hintAnimationEnabled="true"
         app:hintTextColor="@color/orange"
         app:boxBackgroundColor="@color/white"
-        android:hint="@string/enter_selling_price"
-        android:inputType="numberDecimal">
+        android:hint="@string/enter_selling_price">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etxtSellingPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
             android:fontFamily="@font/roboto_condensed_bold"/>
 </com.google.android.material.textfield.TextInputLayout>
     <Space
@@ -89,21 +92,22 @@
         app:hintAnimationEnabled="true"
         app:hintTextColor="@color/orange"
         app:boxBackgroundColor="@color/white"
-        android:hint="@string/enter_tax_rate"
-        android:inputType="numberDecimal">
+        android:hint="@string/enter_tax_rate">
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etxtTaxRate"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
         android:fontFamily="@font/roboto_condensed_bold"/>
 </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
 
-<ProgressBar
+    <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:indeterminateTint="@color/orange"
         android:visibility="gone"/>
 
     <Button

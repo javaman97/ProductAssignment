@@ -17,60 +17,30 @@ class ProductsRepository(private val productApi:ProductApi,val productDB:Product
 
     suspend fun getProducts(): List<Product> {
         return if (NetworkUtils.isConnected(applicationContext)) {
+            syncOfflineProducts()
             productApi.getAllProducts()
         } else {
             emptyList()
         }
     }
 
-    suspend fun postProduct(
-        productName: String,
-        productType: String,
-        price: Double,
-        tax: Double
-    ): Boolean {
-        val productEntity = ProductEntity(
-            name = productName,
-            type = productType,
-            price = price.toString(),
-            tax = tax.toString(),
-        )
-
-        return if (NetworkUtils.isConnected(applicationContext)) {
-            try {
-                val response = productApi.getResponse(productName, productType, price, tax)
-                if (response.isSuccessful && response.body() != null) {
-                    productDB.productDao().addProduct(listOf(productEntity)) // Save to Room
-                    true
-                } else {
-                    false
-                }
-            } catch (e: Exception) {
-                false
-            }
-        } else {
-            productDB.productDao().addProduct(listOf(productEntity)) // Save locally for later sync
-            false
-        }
-
-    }
-
 
     suspend fun syncOfflineProducts() {
         if (NetworkUtils.isConnected(applicationContext)) {
             val offlineProducts =
-                productDB.productDao().getUnsyncedProducts() // Fetch unsynced products
+                productDB.productDao().getUnsyncedProducts()
             offlineProducts.forEach { product ->
                 try {
                     val response = productApi.getResponse(
                         product.name,
                         product.type,
                         product.price.toDouble(),
-                        product.tax.toDouble()
+                        product.tax.toDouble(),
+                        product.image
                     )
                     if (response.isSuccessful) {
                         product.isSynced = true
-                        productDB.productDao().updateProduct(product) // Mark as synced
+                        productDB.productDao().updateProduct(product)
                     }
                 } catch (e: Exception) {
                     Log.d("Product Repository","${e.message}")

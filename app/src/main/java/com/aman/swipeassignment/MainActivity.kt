@@ -1,10 +1,7 @@
 package com.aman.swipeassignment
 
-import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -20,9 +17,9 @@ import com.aman.swipeassignment.databinding.ActivityMainBinding
 import com.aman.swipeassignment.local.ProductDatabase
 import com.aman.swipeassignment.repository.ProductsRepository
 import com.aman.swipeassignment.ui.screens.AddProductFragment
+import com.aman.swipeassignment.utils.Constants.MainActivityTAG
 import com.aman.swipeassignment.utils.NetworkUtils
 import com.aman.swipeassignment.utils.setVisibility
-import com.aman.swipeassignment.utils.toast
 import com.aman.swipeassignment.viewmodels.ProductsViewModel
 import com.aman.swipeassignment.viewmodels.ProductsViewModelFactory
 import kotlinx.coroutines.Dispatchers
@@ -53,13 +50,8 @@ class MainActivity : AppCompatActivity() {
         productApi = RetrofitBuilder.getProductApi()
         productDB = ProductDatabase.getProductDatabase(this)
         productRepo = ProductsRepository(productApi,productDB,applicationContext)
-
         productsViewModel= ViewModelProvider(this, ProductsViewModelFactory(productRepo))[ProductsViewModel::class.java]
 
-
-        binding.reloadProducts.setOnClickListener {
-            toast("Work in Progress or Restart App to See Changes")
-        }
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as? NavHostFragment
 
@@ -72,13 +64,13 @@ class MainActivity : AppCompatActivity() {
                 addProductFragment.show(supportFragmentManager, "AddProductDialogFragment")
             }
         } else {
-            Log.e(TAG, "NavHostFragment not found!")
+            Log.e(MainActivityTAG, "NavHostFragment not found!")
         }
 
         productsViewModel.isInternetConnected.observe(this) { isInternetConnected ->
             if (isInternetConnected) {
                 if(wasPreviouslyConnected==false){
-                setInternetStatusUI(R.color.blue, R.string.internet_connection_back)
+                setInternetStatusUI(R.color.green, R.string.internet_connection_back)
                 lifecycleScope.launch {
                     delay(3000)
                     binding.internetStatus.setVisibility(false)
@@ -109,8 +101,5 @@ class MainActivity : AppCompatActivity() {
         binding.txtConnectionMsg.text = getString(statusText)
     }
 
-    companion object{
-        const val TAG = "MainActivity"
-    }
 
 }

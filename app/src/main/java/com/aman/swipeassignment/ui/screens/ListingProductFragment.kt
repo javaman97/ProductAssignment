@@ -2,30 +2,24 @@ package com.aman.swipeassignment.ui.screens
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.util.query
-import com.aman.swipeassignment.R
-import com.aman.swipeassignment.api.ProductApi
 import com.aman.swipeassignment.api.RetrofitBuilder
-import com.aman.swipeassignment.ui.adapter.ListingProductAdapter
 import com.aman.swipeassignment.databinding.FragmentListingProductBinding
 import com.aman.swipeassignment.local.ProductDatabase
 import com.aman.swipeassignment.repository.ProductsRepository
-import com.aman.swipeassignment.ui.screens.AddProductFragment.Companion
+import com.aman.swipeassignment.ui.adapter.ListingProductAdapter
+import com.aman.swipeassignment.utils.Constants.ListingProductFragmentTAG
 import com.aman.swipeassignment.utils.ResponseState
 import com.aman.swipeassignment.utils.toast
 import com.aman.swipeassignment.viewmodels.ProductsViewModel
 import com.aman.swipeassignment.viewmodels.ProductsViewModelFactory
-import com.google.android.material.snackbar.Snackbar
 import java.util.Locale
 
 
@@ -59,12 +53,12 @@ class ListingProductFragment : Fragment() {
     private fun onSearchProducts() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Log.d(TAG, "Searched Query $query")
+                Log.d(ListingProductFragmentTAG, "Searched Query $query")
               return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                Log.d(TAG, "Query Changed $newText")
+                Log.d(ListingProductFragmentTAG, "Query Changed $newText")
                 filterProductList(newText.orEmpty())
                 return true
             }
@@ -110,7 +104,7 @@ class ListingProductFragment : Fragment() {
                 }
                 is ResponseState.Failure ->{
                     binding.progressBar.visibility = View.GONE
-                    toast(state.error)
+                    toast("Fetching Products FAILED!")
                 }
 
                 is ResponseState.Success -> {
@@ -126,10 +120,6 @@ class ListingProductFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        const val TAG = "Listing Products Screen"
     }
 
 }

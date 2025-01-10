@@ -28,26 +28,14 @@
         android:clickable="true"
         android:elevation="6dp"
         android:text="@string/add_product_button"
-        android:textColor="@color/orange"
+        android:textColor="@color/black"
         app:iconTint="@color/orange"
         android:contentDescription="@string/add_product_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.921"
         app:layout_constraintStart_toStartOf="parent"
-
         app:icon="@drawable/ic_shopping_cart" />
-
-    <ImageView
-        android:id="@+id/reloadProducts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/fabAddProduct"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028"
-        app:srcCompat="@drawable/ic_sync" />
 
     <LinearLayout
         android:id="@+id/internetStatus"

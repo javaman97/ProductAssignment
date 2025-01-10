@@ -10,6 +10,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import java.io.File
 
 interface ProductApi {
 
@@ -22,7 +23,8 @@ interface ProductApi {
         @Field("product_name") product_name:String,
         @Field("product_type") product_type:String,
         @Field("price") price: Double,
-        @Field("tax") tax:Double
+        @Field("tax") tax:Double,
+        @Field("file") image:File?
 
     ): Response<PostApiResponse>
 
