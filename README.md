@@ -2,6 +2,9 @@
 # SWIPE CATALOGUE 
 This Android app allows users to manage products through two main screens: Product Listing and Add Product. The app fetches products from a remote API, displays them in a list, allows users to add new products.
 
+***You can Install and test latest Swipe Catalogue App from below(Click on Image)👇***
+
+[(![DOWNLOAD APP](https://github.com/user-attachments/assets/ae41facc-220e-4532-81dd-8a4dd14a8a56)](https://github.com/javaman97/SwipeAndroidAssignment/releases/download/swipevers1/app-debug.apk)
 
 # LISTING PRODUCTS SCREEN (FRAGMENT)
 
