@@ -39,6 +39,7 @@ class ListingProductFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+
         observeViewModel()
         onSearchProducts()
     }
@@ -104,7 +105,6 @@ class ListingProductFragment : Fragment() {
 
                 is ResponseState.Success -> {
                     binding.progressBar.visibility = View.GONE
-
                     productAdapter.updateProductList(state.data)
                     Log.d(ListingProductFragmentTAG, "Products Fetched Successfully ${state.data}")
                 }

@@ -16,6 +16,7 @@ import com.aman.swipeassignment.ui.screens.AddProductFragment
 import com.aman.swipeassignment.utils.Constants.MainActivityTAG
 import com.aman.swipeassignment.utils.NetworkUtils
 import com.aman.swipeassignment.utils.setVisibility
+import com.aman.swipeassignment.utils.toast
 import com.aman.swipeassignment.viewmodels.ProductsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setInternetStatusUI(color: Int, statusText:Int){
+        binding.internetStatus.setVisibility(true)
         binding.internetStatus.setBackgroundColor(ContextCompat.getColor(this, color))
         binding.txtConnectionMsg.text = getString(statusText)
 
