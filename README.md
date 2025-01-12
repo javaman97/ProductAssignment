@@ -1,5 +1,7 @@
 
 # SWIPE CATALOGUE 
+This Android app allows users to manage products through two main screens: Product Listing and Add Product. The app fetches products from a remote API, displays them in a list, allows users to add new products.
+
 
 # LISTING PRODUCTS SCREEN (FRAGMENT)
 
