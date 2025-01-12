@@ -152,13 +152,15 @@ class AddProductFragment : BottomSheetDialogFragment() {
     private fun showProductNotification(context: Context, isSuccess: Boolean) {
         val channelId = "product_notification_channel"
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-        val channel = NotificationChannel(
-            channelId,
-            "Product Notifications",
-            NotificationManager.IMPORTANCE_DEFAULT
-        )
-        notificationManager.createNotificationChannel(channel)
+            val channel = NotificationChannel(
+                channelId,
+                "Product Notifications",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
 
         val notification = NotificationCompat.Builder(context, channelId)
             .setSmallIcon( if (isSuccess) R.drawable.ic_done_24 else R.drawable.ic_failure)
