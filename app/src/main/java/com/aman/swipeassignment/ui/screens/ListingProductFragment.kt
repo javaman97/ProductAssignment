@@ -8,18 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aman.swipeassignment.api.RetrofitBuilder
 import com.aman.swipeassignment.databinding.FragmentListingProductBinding
-import com.aman.swipeassignment.local.ProductDatabase
-import com.aman.swipeassignment.repository.ProductsRepository
 import com.aman.swipeassignment.ui.adapter.ListingProductAdapter
 import com.aman.swipeassignment.utils.Constants.ListingProductFragmentTAG
 import com.aman.swipeassignment.utils.ResponseState
 import com.aman.swipeassignment.utils.toast
 import com.aman.swipeassignment.viewmodels.ProductsViewModel
-import com.aman.swipeassignment.viewmodels.ProductsViewModelFactory
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.util.Locale
 
 
@@ -29,18 +25,15 @@ class ListingProductFragment : Fragment() {
 
     private val binding get() = _binding!!
     private lateinit var productAdapter: ListingProductAdapter
-    private lateinit var viewModel: ProductsViewModel
-    private val repository: ProductsRepository by lazy { ProductsRepository(RetrofitBuilder.getProductApi(),
-        ProductDatabase.getProductDatabase(requireContext()), requireContext()) }
+    private val viewModel: ProductsViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
 
         _binding = FragmentListingProductBinding.inflate(inflater, container, false)
-         viewModel = ViewModelProvider(this, ProductsViewModelFactory(repository))[ProductsViewModel::class.java]
-        return binding.root
+       return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -101,16 +94,19 @@ class ListingProductFragment : Fragment() {
             when(state){
                 is ResponseState.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
+                    Log.d(ListingProductFragmentTAG, "Loading Fetched Products")
                 }
                 is ResponseState.Failure ->{
                     binding.progressBar.visibility = View.GONE
                     toast("Fetching Products FAILED!")
+                    Log.d(ListingProductFragmentTAG, " Fetched Products FAILED!  ${state.error}")
                 }
 
                 is ResponseState.Success -> {
                     binding.progressBar.visibility = View.GONE
 
                     productAdapter.updateProductList(state.data)
+                    Log.d(ListingProductFragmentTAG, "Products Fetched Successfully ${state.data}")
                 }
             }
 
@@ -120,6 +116,7 @@ class ListingProductFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        viewModel.addProductState.removeObservers(viewLifecycleOwner)
     }
 
 }

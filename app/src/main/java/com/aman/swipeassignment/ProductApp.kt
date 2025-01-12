@@ -1,21 +1,18 @@
 package com.aman.swipeassignment
 
 import android.app.Application
-import com.aman.swipeassignment.api.ProductApi
-import com.aman.swipeassignment.api.RetrofitBuilder
-import com.aman.swipeassignment.local.ProductDatabase
-import com.aman.swipeassignment.repository.ProductsRepository
+import com.aman.swipeassignment.di.AppModule.loadModules
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.GlobalContext.startKoin
 
-class ProductApp:Application() {
 
-    lateinit var productRepo: ProductsRepository
+class ProductApp: Application() {
+
     override fun onCreate() {
         super.onCreate()
-        initialize()
+        startKoin {
+            androidContext(this@ProductApp)
+            loadModules()
+        }
     }
-
-    private fun initialize() {
-        productRepo = ProductsRepository(RetrofitBuilder.getProductApi(), ProductDatabase.getProductDatabase(applicationContext),applicationContext )
-    }
-
 }

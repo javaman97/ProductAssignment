@@ -4,10 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.aman.swipeassignment.models.Product
 import com.aman.swipeassignment.R
+import com.aman.swipeassignment.data.models.Product
 import com.aman.swipeassignment.databinding.ListingItemBinding
-import com.aman.swipeassignment.models.ProductEntity
 
 class ListingProductAdapter :RecyclerView.Adapter<ListingProductAdapter.ListingProductViewHolder>() {
    private val productList: MutableList<Product> = mutableListOf()

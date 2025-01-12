@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aman.swipeassignment.models.Product
+import com.aman.swipeassignment.data.models.PostApiResponse
+import com.aman.swipeassignment.data.models.Product
 import com.aman.swipeassignment.repository.ProductsRepository
 import com.aman.swipeassignment.utils.ResponseState
 import kotlinx.coroutines.Dispatchers
@@ -18,8 +19,8 @@ class ProductsViewModel(private val repository: ProductsRepository):ViewModel() 
     private val _isInternetConnected = MutableLiveData<Boolean>()
     val isInternetConnected: LiveData<Boolean> get() = _isInternetConnected
 
-    private val _addProductState = MutableLiveData<ResponseState<Boolean>>()
-    val addProductState: LiveData<ResponseState<Boolean>> get() = _addProductState
+    private val _addProductState = MutableLiveData<ResponseState<PostApiResponse>>()
+    val addProductState: LiveData<ResponseState<PostApiResponse>> get() = _addProductState
 
 
     fun updateConnectivityStatus(isConnected: Boolean) {
@@ -42,9 +43,26 @@ class ProductsViewModel(private val repository: ProductsRepository):ViewModel() 
             }
     }
 
-    fun syncAddedProducts() {
+    fun addProduct(
+        productName: String,
+        productType: String,
+        price: Double,
+        taxRate: Double
+    ) {
         viewModelScope.launch {
-            repository.syncOfflineProducts()
+            _addProductState.postValue(ResponseState.Loading)
+            try {
+                val response = repository.postProduct(productName, productType, price, taxRate)
+                if (response.isSuccessful && response.body() != null) {
+                    _addProductState.postValue(ResponseState.Success(response.body()!!))
+                } else {
+                    _addProductState.postValue(
+                        ResponseState.Failure("Error: ${response.errorBody()?.string()}")
+                    )
+                }
+            } catch (e: Exception) {
+                _addProductState.postValue(ResponseState.Failure("Exception: ${e.message}"))
+            }
         }
     }
 

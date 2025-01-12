@@ -1,16 +1,14 @@
-package com.aman.swipeassignment.api
+package com.aman.swipeassignment.data.api
 
 
-import com.aman.swipeassignment.models.PostApiResponse
-import com.aman.swipeassignment.models.Product
-import com.aman.swipeassignment.models.ProductEntity
+import com.aman.swipeassignment.data.models.PostApiResponse
+import com.aman.swipeassignment.data.models.Product
 import com.aman.swipeassignment.utils.Constants
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
-import java.io.File
 
 interface ProductApi {
 
@@ -23,9 +21,7 @@ interface ProductApi {
         @Field("product_name") product_name:String,
         @Field("product_type") product_type:String,
         @Field("price") price: Double,
-        @Field("tax") tax:Double,
-        @Field("file") image:File?
-
+        @Field("tax") tax:Double
     ): Response<PostApiResponse>
 
 }

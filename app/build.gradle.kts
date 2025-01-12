@@ -53,20 +53,14 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     //Jetpack Navigation Component
-    implementation("androidx.navigation:navigation-runtime-ktx:2.8.5")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.5")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
-
-    // Room DB
-    implementation("androidx.room:room-runtime:2.6.1")
-    annotationProcessor("androidx.room:room-compiler:2.6.1")
-    implementation ("androidx.room:room-ktx:2.6.1")
-    kapt ("androidx.room:room-compiler:2.6.1")
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     //Circular ImageView
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation (libs.circleimageview)
 
     // Coroutines
     implementation (libs.kotlinx.coroutines.core)
@@ -88,11 +82,5 @@ dependencies {
     // Moshi
     implementation(libs.moshi.kotlin)
     implementation(libs.converter.moshi)
-
-    // Paging
-    implementation(libs.androidx.paging.runtime.ktx)
-
-    // Splash  API
-    implementation(libs.androidx.core.splashscreen)
 
 }

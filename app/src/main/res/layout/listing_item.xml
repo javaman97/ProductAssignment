@@ -19,6 +19,8 @@
             android:id="@+id/materialCardView2"
             android:layout_width="85dp"
             android:layout_height="85dp"
+            app:strokeColor="@color/orange"
+            app:strokeWidth="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -64,14 +66,15 @@
             android:id="@+id/txtPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/roboto_condensed_bold"
             android:textColor="@color/green"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.825"
-            app:layout_constraintStart_toEndOf="@+id/txtProductType"
-            app:layout_constraintTop_toBottomOf="@+id/txtProductName"
+            app:layout_constraintHorizontal_bias="0.852"
+            app:layout_constraintStart_toEndOf="@+id/txtProductName"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Price" />
 
         <TextView
@@ -82,10 +85,10 @@
             android:textColor="@color/orange"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/txtPrice"
-            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/txtPrice"
             app:layout_constraintTop_toBottomOf="@+id/txtPrice"
-            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintVertical_bias="0.583"
             tools:text="2.5" />
 
 

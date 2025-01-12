@@ -1,13 +1,18 @@
 <resources>
     <string name="app_name">Swipe Catalogue</string>
-
     <string name="add_product_button">Add Product </string>
     <string name="select_product_type">Product Type</string>
-    <string name="enter_product_name">Product Name\n</string>
+    <string name="enter_product_name">Product Name</string>
     <string name="enter_selling_price">Product Price </string>
     <string name="enter_tax_rate">Tax</string>
     <string name="upload_image">Product Image</string>
     <string name="submit">Add </string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="internet_connection_back">Internet Connection is Back</string>
+    <string name="success_msg">your product is added \n Successfully! </string>
+    <string name="failure_msg">Please try again later</string>
+    <string name="success_title">Congratulations 🎉, </string>
+    <string name="failure_title">Oops! 😔 Something went wrong</string>
+    <string name="okay">OKAY</string>
+    <string name="retry">RETRY</string>
 </resources>
