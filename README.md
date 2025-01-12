@@ -132,11 +132,11 @@ Response:
   - `ProductsRepository.kt`: The repository class that acts as a middleman between data sources (API/Room) and ViewModel.
 
 - **di/**: Contains Koin dependency injection modules for setting up dependencies.
-  - `ProductModule.kt`: Defines Koin modules for injecting dependencies like Retrofit, Room, and repositories.
+  - `ProductModule.kt`: Defines Koin modules for injecting dependencies like Retrofit, Viewmodel and repositories.
 
 - **ui/**: Contains the UI components, including fragments and view models.
   - `ProductListFragment.kt`: Displays the list of products and includes search functionality.
-  - `AddProductFragment.kt`: Provides the form to add a new product.
+  - `AddProductFragment.kt`: Provides the form to add a new product with notification and feedback dialog of added product.
   - `ProductAdapter.kt`: Adapter for displaying products in a `RecyclerView`.
   - `ProductsViewModel.kt`: ViewModel for managing the data for the product list.
   - `AddProductViewModel.kt`: ViewModel for managing the data for adding a new product.
@@ -151,6 +151,50 @@ Response:
   - `fragment_add_product.xml`: Layout for adding a new product.
 
 
-├── app/ │ ├── src/ │ │ ├── main/ │ │ │ ├── java/ │ │ │ │ └── com/ │ │ │ │ └── aman/ │ │ │ │ └── swipeassignment/ │ │ │ │ ├── data/ │ │ │ │ │ ├── api/ │ │ │ │ │ │ └── ProductApi.kt │ │ │ │ │ ├── database/ │ │ │ │ │ │ └── ProductDao.kt │ │ │ │ │ ├── repository/ │ │ │ │ │ │ └── ProductsRepository.kt │ │ │ │ ├── di/ │ │ │ │ │ └── ProductModule.kt │ │ │ │ ├── ui/ │ │ │ │ │ ├── fragment/ │ │ │ │ │ │ ├── ProductListFragment.kt │ │ │ │ │ │ └── AddProductFragment.kt │ │ │ │ │ ├── adapter/ │ │ │ │ │ │ └── ProductAdapter.kt │ │ │ │ │ └── viewmodel/ │ │ │ │ │ ├── ProductsViewModel.kt │ │ │ │ │ └── AddProductViewModel.kt │ │ │ │ ├── utils/ │ │ │ │ │ └── NetworkUtils.kt │ │ │ │ └── ProductApp.kt │ │ ├── res/ │ │ │ ├── layout/ │ │ │ │ ├── fragment_product_list.xml │ │ │ │ ├── fragment_add_product.xml │ │ │ ├── values/ │ │ │ │ ├── colors.xml │ │ │ │ ├── strings.xml │ │ │ └── drawable/ │ │ │ └── default_image.png └── build.gradle
+Swipe Catalogue/
+├── app/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/
+│   │   │   │       └── aman/
+│   │   │   │           └── swipeassignment/
+│   │   │   │               ├── data/
+│   │   │   │               │   ├── api/
+│   │   │   │               │   │   └── ProductApi.kt
+│   │   │   │               │   ├── repository/
+│   │   │   │               │   │   └── ProductsRepository.kt
+│   │   │   │               ├── di/
+│   │   │   │               │   └── ProductModule.kt
+│   │   │   │               ├── ui/
+│   │   │   │               │   ├── fragment/
+│   │   │   │               │   │   ├── ProductListFragment.kt
+│   │   │   │               │   │   └── AddProductFragment.kt
+│   │   │   │               │   ├── adapter/
+│   │   │   │               │   │   └── ProductAdapter.kt
+│   │   │   │               │   └── viewmodel/
+│   │   │   │               │       ├── ProductsViewModel.kt
+│   │   │   │               │       └── AddProductViewModel.kt
+│   │   │   │               ├── utils/
+│   │   │   │               │   └── NetworkUtils.kt
+│   │   │   │               └── ProductApp.kt
+│   │   ├── res/
+│   │   │   ├── layout/
+│   │   │   │   ├── activity_main.xml
+│   │   │   │   ├── add_product_actiondialog.xml
+│   │   │   │   ├── fragment_listing_product.xml
+│   │   │   │   ├── fragment_listing_product.xml
+│   │   │   │   ├── listing_item.xml
+│   │   │   ├── navigation/
+│   │   │   │   ├── nav_graph.xml
+│   │   │   ├── values/
+│   │   │   │   ├── colors.xml
+│   │   │   │   ├── strings.xml
+│   │   │   │   ├── dimens.xml
+│   │   │   │   ├── arrays.xml
+│   │   │   │   ├── font_certs.xml
+│   │   │   │   ├── preloaded_fonts.xml
+└── build.gradle
+
 
 
