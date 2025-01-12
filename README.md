@@ -1,200 +1,68 @@
-# SWIPE Assignment (Product Management App)
 
-This Android app allows users to manage products through two main screens: **Product Listing** and **Add Product**. The app fetches products from a remote API, displays them in a list, allows users to add new products.
+# SWIPE CATALOGUE 
 
-The app is built with modern Android development practices, including **MVVM architecture**, **Retrofit for networking**, **Koin for dependency injection**, **Coroutines for background tasks**, and **Coil for image loading**.
+# LISTING PRODUCTS SCREEN (FRAGMENT)
 
-## Features
-
-### Product Listing Screen
-- Displays a list of products fetched from a REST API.
-- Users can:
-  - **Search products** by name.
-  - **View all products** in the list.
-  - **Navigate to Add Product screen** using a button.
-- **Image Handling**: Loads product images from URLs. If no image URL is available, a default image is shown.
-- **Loading Indicator**: Displays a progress bar while products are being fetched from the server.
-
-### Add Product Screen
-- Allows users to add new products with the following features:
-  - Select product type from a predefined list.
-  - Enter product name, price, and tax rate using input fields.
-  - **Image Upload**: Select an image (JPEG or PNG with 1:1 ratio).
-- **Validation**: Ensures fields are correctly filled out before submission.
-- **Progress Indicator**: Shows loading while uploading the product.
-- **User Feedback**: Displays a success or failure message after submission, using a dialog and notification.
-
-### Offline Functionality
-- If there is no internet connection, products are saved locally in a database.
-- Once an internet connection is restored, the app syncs the locally saved products with the server.
-
----
-
-## Tech Stack
-
-- **Architecture:** MVVM (Model-View-ViewModel)
-- **Networking:**
-  - **Retrofit** for REST API communication.
-  - **Gson** for JSON serialization and deserialization.
-  - **Moshi** for alternative JSON parsing (optional).
-- **Dependency Injection:** **Koin** for dependency injection.
-- **Coroutines:** **Kotlin Coroutines** for background tasks.
-- **Image Loading:** **Coil** for image loading.
-- **UI Components:** 
-  - **Material Design Components** for modern UI.
-  - **Jetpack Navigation Component** for handling screen navigation.
-
----
-
-## Libraries Used
-
-- **Jetpack Navigation Component:**
-  - `androidx.navigation.runtime.ktx`
-  - `androidx.navigation.fragment.ktx`
-  - `androidx.navigation.ui.ktx`
-  - `androidx.lifecycle.livedata.ktx`
-  - `androidx.lifecycle.viewmodel.ktx`
-
-- **Circular ImageView:**
-  - `circleimageview`
-
-- **Coroutines:**
-  - `kotlinx.coroutines.core`
-  - `kotlinx.coroutines.android`
-
-- **Image Loading:**
-  - `coil`
-
-- **Dependency Injection (Koin):**
-  - `koin.core`
-  - `koin.android`
-
-- **Networking:**
-  - **Retrofit:**
-    - `retrofit`
-  - **Gson:**
-    - `converter.gson`
-  - **OkHttp:**
-    - `okhttp.bom`
-  - **Moshi:**
-    - `moshi.kotlin`
-    - `converter.moshi`
-
----
-
-## API Endpoints
-
-### Product Listing API
-- **GET**: `https://app.getswipe.in/api/public/get`
-- **Response:**
-```json
-[
-  {
-    "image": "https://vx-erp-product-images.s3.ap-south-1.amazonaws.com/9_1619635829_Farm_FreshToAvatar_Logo-01.png",
-    "price": 1694.91,
-    "product_name": "Testing app",
-    "product_type": "Product",
-    "tax": 18.0
-  },
-  {
-    "image": "https://vx-erp-product-images.s3.ap-south-1.amazonaws.com/9_1619873597_WhatsApp_Image_2021-04-30_at_19.43.23.jpeg",
-    "price": 84745.76,
-    "product_name": "Testing Update",
-    "product_type": "Service",
-    "tax": 18.0
-  }
-]
-```
-
-Add Product API
-POST: https://app.getswipe.in/api/public/add
-Body Type: Form-data
-Response:
-```json
-{
-  "message": "Product added successfully!",
-  "product_details": {
-    "product_name": "New Product",
-    "price": 2000,
-    "tax": 18.0
-  },
-  "product_id": 2657,
-  "success": true
-}
-
-```
+<img src="https://github.com/user-attachments/assets/34801971-c00e-45bc-9413-b7fc333e56bd" width="200" />
+<img src="https://github.com/user-attachments/assets/bef2b896-1818-403c-8b9f-0968d885e3d5" width="200" />
+<img src="https://github.com/user-attachments/assets/c5116211-5c2d-4f65-b158-5e133eac83c4" width="200" />
+<img src="https://github.com/user-attachments/assets/5f015ea3-5bb2-4c0b-9b88-0b2f11c63274" width="200" />
 
 
-### Explanation of Key Directories and Files:
+# ADDING PRODUCT SCREEN (BOTTOM SHEET FRAGMENT)
+<img src="https://github.com/user-attachments/assets/629ef6ac-0a50-4990-b9b1-2b58cd839b29" width="250" />
+<img src= "https://github.com/user-attachments/assets/6033aaff-88b6-4bb6-b6a3-2bbda4f26dba" width ="250" />
 
-- **data/**: Contains all the data-related components such as API services and local database (Room).
-  - `ProductApi.kt`: Defines the Retrofit service for making API calls.
-  - `ProductsRepository.kt`: The repository class that acts as a middleman between data sources (API/Room) and ViewModel.
-
-- **di/**: Contains Koin dependency injection modules for setting up dependencies.
-  - `ProductModule.kt`: Defines Koin modules for injecting dependencies like Retrofit, Viewmodel and repositories.
-
-- **ui/**: Contains the UI components, including fragments and view models.
-  - `ProductListFragment.kt`: Displays the list of products and includes search functionality.
-  - `AddProductFragment.kt`: Provides the form to add a new product with notification and feedback dialog of added product.
-  - `ProductAdapter.kt`: Adapter for displaying products in a `RecyclerView`.
-  - `ProductsViewModel.kt`: ViewModel for managing the data for the product list.
-  - `AddProductViewModel.kt`: ViewModel for managing the data for adding a new product.
-
-- **utils/**: Contains utility classes like network-related functions.
-  - `NetworkUtils.kt`: Contains functions for checking network connectivity.
-
-- **ProductApp.kt**: The application class where Koin is initialized.
-
-- **res/**: Contains XML layouts and resources for the app.
-  - `fragment_product_list.xml`: Layout for displaying the list of products.
-  - `fragment_add_product.xml`: Layout for adding a new product.
+### Adding Product Status (DIALOGs and Notification)
+<img src="https://github.com/user-attachments/assets/6ca4c6e7-af62-4a3f-86b0-1926b32600af" width="200"  />
+<img src="https://github.com/user-attachments/assets/8e3140a4-d67d-4f4f-87c5-c3926a0a4d73" width="200" />
+<img src="https://github.com/user-attachments/assets/78b08838-9c2b-40a9-a756-d7716690de52" width="200" />
 
 
-Swipe Catalogue/
-├── app/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/
-│   │   │   │       └── aman/
-│   │   │   │           └── swipeassignment/
-│   │   │   │               ├── data/
-│   │   │   │               │   ├── api/
-│   │   │   │               │   │   └── ProductApi.kt
-│   │   │   │               │   ├── repository/
-│   │   │   │               │   │   └── ProductsRepository.kt
-│   │   │   │               ├── di/
-│   │   │   │               │   └── ProductModule.kt
-│   │   │   │               ├── ui/
-│   │   │   │               │   ├── fragment/
-│   │   │   │               │   │   ├── ProductListFragment.kt
-│   │   │   │               │   │   └── AddProductFragment.kt
-│   │   │   │               │   ├── adapter/
-│   │   │   │               │   │   └── ProductAdapter.kt
-│   │   │   │               │   └── viewmodel/
-│   │   │   │               │       ├── ProductsViewModel.kt
-│   │   │   │               │       └── AddProductViewModel.kt
-│   │   │   │               ├── utils/
-│   │   │   │               │   └── NetworkUtils.kt
-│   │   │   │               └── ProductApp.kt
-│   │   ├── res/
-│   │   │   ├── layout/
-│   │   │   │   ├── activity_main.xml
-│   │   │   │   ├── add_product_actiondialog.xml
-│   │   │   │   ├── fragment_listing_product.xml
-│   │   │   │   ├── fragment_listing_product.xml
-│   │   │   │   ├── listing_item.xml
-│   │   │   ├── navigation/
-│   │   │   │   ├── nav_graph.xml
-│   │   │   ├── values/
-│   │   │   │   ├── colors.xml
-│   │   │   │   ├── strings.xml
-│   │   │   │   ├── dimens.xml
-│   │   │   │   ├── arrays.xml
-│   │   │   │   ├── font_certs.xml
-│   │   │   │   ├── preloaded_fonts.xml
-└── build.gradle
+
+## Built With 🛠
+- [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
+- [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - For asynchronous and more..
+sequentially emits values and completes normally or with an exception.
+- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps.
+  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying database changes.
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes. 
+  - [ViewBinding](https://developer.android.com/topic/libraries/view-binding) - Generates a binding class for each XML layout file present in that module and allows you to more easily write code that interacts with views.
+- [Dependency Injection](https://developer.android.com/training/dependency-injection) - 
+  - [KOIN](https://insert-koin.io/) - A framework to help you build any kind of Kotlin & Kotlin Multiplatform application.Fully made using Kotlin and easy and simple to use.
+- [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
+- [Moshi](https://github.com/square/moshi) - A modern JSON library for Kotlin and Java.
+- [Moshi Converter](https://github.com/square/retrofit/tree/master/retrofit-converters/moshi) - A Converter which uses Moshi for serialization to and from JSON.
+- [Coil-kt](https://coil-kt.github.io/coil/) - An image loading library for Android backed by Kotlin Coroutines.
+- [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
+- [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - For writing Gradle build scripts using Kotlin.
+
+# Package Structure
+    
+    com.aman.swipeassignment    # Root Package
+    .
+    ├── data                # For data handling.   
+    |   ├── api             # Retrofit API for remote end point.
+    │   └── repository      # Single source of data.
+    |
+    ├── models               # Model classes
+    |
+    ├── di                  # Dependency Injection                  
+    │   └── module          # DI Modules
+    |
+    ├── ui                  # Activity/View layer
+    |   ├── adapter         # Adapter for RecyclerView 
+    │   └── screens         # Listing and Add Product Screens
+    ├── viewmodel           # ProductViewModel to manage data in lifecycle aware manner 
+    ├── main                # Main Screen Activity
+    └── utils               # Utility Classes / Kotlin extensions / Constants
+
+
+## Architecture
+This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
+
+![](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
+
 
 
 
